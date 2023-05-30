@@ -1,4 +1,4 @@
-name: Manual Deploy to S3
+name: Deploy React to AWS S3 and cloud front
 
 on:
   workflow_dispatch:
@@ -36,3 +36,5 @@ jobs:
       
       - name: Upload to S3
         run: aws s3 sync ./build s3://react-ci-cd-bucket --delete
+      - name: Copy files to the production website with the AWS CLI
+        run: aws cloudfront create-invalidation --distribution-id ${{ env.DISTRIBUTION_ID }} --paths "/*"
