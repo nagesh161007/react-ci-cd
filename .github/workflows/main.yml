@@ -35,8 +35,4 @@ jobs:
           aws-region: us-east-1
       
       - name: Upload to S3
-        run: aws s3 sync ./build s3://react-ci-cd-bucket --delete
-        
-      - name: Copy files to the production website with the AWS CLI
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/*"
-        
+        run: aws s3 sync ./build s3://react-ci-cd-bucket --delete  
